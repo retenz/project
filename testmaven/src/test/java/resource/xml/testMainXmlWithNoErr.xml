@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+    
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="main\\resource\\model.xsd">
+    <rules>
+        <rule ruleResult="aggg">
+            <and>
+                <fact value="as"/>
+                <fact value="asd"/>
+            </and>
+        </rule>
+    </rules>
+    <knownFacts>
+        <knownFact>as</knownFact>
+        <knownFact>asd</knownFact>
+    </knownFacts>
+</model>

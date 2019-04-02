@@ -1,0 +1,36 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.testmaven.mapper.ExpressionMapper">
+
+    <select id= "getChild" parameterType="java.lang.Integer" resultMap="Expression">
+        select * from expressions where "Parent_ID" = #{id}
+    </select>
+      
+    <insert id="insertExpression" 
+            useGeneratedKeys="true" 
+            parameterType="com.mycompany.testmaven.dto.ExpressionDTO" 
+            keyProperty="id" 
+            keyColumn="ID">
+        INSERT INTO public.expressions("Type", "Value") 
+        VALUES(#{type}::logic_operation, #{value}) 
+    </insert>  
+      
+    <insert id="insertChildExpression" 
+            useGeneratedKeys="true" 
+            parameterType="com.mycompany.testmaven.dto.ExpressionDTO" 
+            keyProperty="id" 
+            keyColumn="ID">
+        INSERT INTO public.expressions("Type", "Value", "Parent_ID") 
+        VALUES(#{type}::logic_operation, #{value}, #{parentID}) 
+    </insert>  
+    <resultMap id="Expression" type="com.mycompany.testmaven.dto.ExpressionDTO">
+        <id property="id" column="ID"/>
+        <result property="type" column="Type"/>
+        <result property="value" column="Value"/>
+        <result property="parentID" column="Parent_ID"/>
+    </resultMap>
+       
+    <delete id="deleteALL">
+        DELETE FROM public.expressions;
+        ALTER SEQUENCE id_expression_count RESTART WITH 1
+    </delete>
+</mapper>

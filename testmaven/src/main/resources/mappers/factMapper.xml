@@ -1,0 +1,18 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.testmaven.mapper.FactMapper">
+
+    <select id="getKnownFact"
+            resultType="java.lang.String">
+        select "Value" from known_fact 
+    </select>
+           
+    <insert id="insertKnownFact" parameterType="java.lang.String" useGeneratedKeys="true" >
+        INSERT INTO public.known_fact("Value") 
+        VALUES(#{known_fact})
+    </insert>       
+    
+    <delete id="deleteALL">
+        DELETE FROM public.known_fact;
+        ALTER SEQUENCE id_known_fact_count RESTART WITH 1
+    </delete>
+</mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.testmaven.mapper.RuleMapper">
+   
+    <select id="getRules"
+            resultMap="RuleDTO">
+        select r.*, e."ID", e."Type", e."Value"
+        from public.rule r INNER JOIN public.expressions e ON r."Expression_ID" = e."ID"
+    </select>
+    
+    <insert id="insertRule" 
+            parameterType="com.mycompany.testmaven.dto.RuleDTO"
+            useGeneratedKeys="true">
+        INSERT INTO public.rule("Expression_ID", "Result_Fact") 
+        VALUES(#{Expression_ID}, #{Result_Fact}) 
+        
+    </insert>
+    
+    <resultMap id="RuleDTO" type="com.mycompany.testmaven.dto.RuleDTO">
+        <id property="ID" column="ID"/>
+        <result property="Expression_ID" column="Expression_ID"/> 
+        <result property="Result_Fact" column="Result_Fact"/> 
+        <result property="expression.id" column="Expression_ID"/> 
+        <result property="expression.type" column="Type"/> 
+        <result property="expression.value" column="Value"/> 
+    </resultMap>
+    
+    <delete id="deleteALL">
+        DELETE FROM public.rule;
+        ALTER SEQUENCE id_rule_count RESTART WITH 1
+    </delete>
+    
+</mapper>

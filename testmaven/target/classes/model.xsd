@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+           
+    
+    <xs:element name="model" type="modelType"/>
+
+    <xs:complexType name= "modelType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="rules" type="rulesType"/>
+            <xs:element name="knownFacts" type="knownFactsType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="knownFactsType">
+        <xs:sequence  minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="knownFact" type="valueType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="rulesType">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="rule" type="ruleType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ruleType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="and" type="opType"/>
+                <xs:element name="or" type="opType"/>
+                <xs:element name="fact" type="factType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="ruleResult" use="required" type="valueType"/>
+    </xs:complexType>
+    
+    <xs:complexType name="opType">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="and" type="opType"/>
+            <xs:element name="or" type="opType"/>
+            <xs:element name="fact" type="factType"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:complexType name="factType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="value" use="required" type="valueType"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:simpleType name="valueType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="_*[A-Za-z]+[_A-Za-z0-9]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+
+
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..//src//main//resource//model.xsd">
+    <rules>
+        <rule ruleResult="v">
+            <or>
+                <fact value="aa"/>
+                <and>
+                    <fact value="dd"/>
+                    <fact value="s"/>
+                </and>
+            </or>
+        </rule>
+        <rule ruleResult="ggg">
+            <or>
+                <fact value="aa"/>
+                <fact value="zz"/>
+                <fact value="xx"/>
+            </or>
+        </rule>
+        <rule ruleResult="T">
+            <or>
+                <fact value="AB"/>
+                <and>
+                    <fact value="NH"/>
+                    <fact value="HF"/>
+                </and>
+            </or>
+        </rule>
+        <rule ruleResult="u">
+            <fact value="aa"/>
+        </rule>
+        <rule ruleResult="M">
+            <or>
+                <and>
+                    <fact value="ff"/>
+                    <fact value="ee"/>
+                </and>
+                <fact value="aa"/>
+            </or>
+        </rule>
+    </rules>
+    <knownFacts>
+        <knownFact>aa</knownFact>
+        <knownFact>ss</knownFact>
+        <knownFact>a</knownFact>
+        <knownFact>s</knownFact>
+        <knownFact>d</knownFact>
+    </knownFacts>
+</model>
